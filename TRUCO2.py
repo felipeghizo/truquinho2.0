@@ -1,4 +1,4 @@
-class Truco1:
+class Truco2:
 
     def __init__(self, truco1):
 
@@ -10,15 +10,16 @@ class Truco1:
         aux_truco = []
         lista = []
         pontos = 1
-        win_mao1 = 0
+        win_mao2 = 0
 
         if truco1[0] == "S":
             resp2 = int(input("Desejas: [1] Correr [2] cair [3] Pedir seis \n"))
             if resp2 == 1:
-
-                print(f"Jogador 1 levou a rodada valendo 1 ponto.")
-                lista.append(2)
-                lista.append(1)
+                pontos = 1
+                win_mao2 = 2
+                print(f"Jogador 2 levou a rodada valendo 1 ponto.")
+                lista.append(win_mao2)
+                lista.append(pontos)
 
                 return lista
 
@@ -26,38 +27,38 @@ class Truco1:
                 print("agora a rodada vale 3 pontos!")
                 pontos = 3
 
-                lista.append(win_mao1)
+                lista.append(win_mao2)
                 lista.append(pontos)
 
                 return lista
 
             if resp2 == 3:
 
-                return Seis1.seis1(self, "S")
+                return Seis2.seis2(self, "S")
 
 
         else:
             pontos = 1
 
-        lista. append(win_mao1)
+        lista. append(win_mao2)
         lista.append(pontos)
 
         return lista
 
 
-class Seis1(Truco1):
+class Seis2(Truco2):
 
     def __init__(self, truco1, seis):
 
-        Truco1.__init__(self, truco1)
+        Truco2.__init__(self, truco1)
         self.seis = seis
 
-    def seis1(self, seis):
+    def seis2(self, seis):
 
         pontos = 3
 
         lista = []
-        win_mao2 = 0
+        win_mao1 = 0
 
         if pontos == 3:
             if seis[0] == "S":
@@ -65,7 +66,7 @@ class Seis1(Truco1):
                 if resp1 == 1:
                     lista.append(2)
                     lista.append(3)
-                    print(f"Jogador 2 levou a rodada valendo 3 pontos.")
+                    print(f"Jogador 1' levou a rodada valendo 3 pontos.")
                     return lista
 
                 if resp1 == 2:
@@ -77,28 +78,28 @@ class Seis1(Truco1):
 
                 if resp1 == 3:
 
-                    return Nove1.nove1(self, "S")
+                    return Nove2.nove2(self, "S")
             else:
                 pontos = 3
 
-        lista.append(win_mao2)
+        lista.append(win_mao1)
         lista.append(pontos)
 
         return lista
 
 
-class Nove1(Seis1):
+class Nove2(Seis2):
 
     def __init__(self, truco1, seis, nove):
 
-        Seis1.__init__(self, truco1, seis)
+        Seis2.__init__(self, truco1, seis)
         self.nove = nove
 
-    def nove1(self, nove):
+    def nove2(self, nove):
 
         lista = []
         pontos = 6
-        win_mao1 = 0
+        win_mao2 = 0
 
         if pontos == 6:
             if nove[0] == "S":
@@ -107,7 +108,7 @@ class Nove1(Seis1):
 
                     lista.append(2)
                     lista.append(6)
-                    print(f"Jogador 1 levou a rodada valendo 6 pontos.")
+                    print(f"Jogador 2 levou a rodada valendo 6 pontos.")
                     return lista
 
                 if resp22 == 2:
@@ -119,28 +120,28 @@ class Nove1(Seis1):
 
                 if resp22 == 3:
 
-                    return Doze1.doze1(self, "S")
+                    return Doze2.doze2(self, "S")
             else:
                 pontos = 6
 
-        lista. append(win_mao1)
+        lista. append(win_mao2)
         lista.append(pontos)
 
         return lista
 
 
-class Doze1(Nove1):
+class Doze2(Nove2):
 
     def __init__(self, truco1, seis, nove, doze):
 
-        Nove1.__init__(self, truco1, seis, nove)
+        Nove2.__init__(self, truco1, seis, nove)
         self.doze = doze
 
-    def doze1(self, doze):
+    def doze2(self, doze):
 
         lista = []
         pontos = 9
-        win_mao2 = 0
+        win_mao1 = 0
 
         if pontos == 9:
             if doze[0] == "S":
@@ -148,7 +149,7 @@ class Doze1(Nove1):
                 if resp11 == 1:
                     lista.append(2)
                     lista.append(9)
-                    print(f"Jogador 2 levou a rodada valendo 9 pontos.")
+                    print(f"Jogador 1 levou a rodada valendo 9 pontos.")
                     return lista
 
                 if resp11 == 2:
@@ -160,22 +161,10 @@ class Doze1(Nove1):
             else:
                 pontos = 9
 
-        lista. append(win_mao2)
+        lista. append(win_mao1)
         lista.append(pontos)
 
         return lista
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
