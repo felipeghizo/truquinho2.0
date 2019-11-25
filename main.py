@@ -10,6 +10,7 @@ from PROJETO.PODER_TOTAL_BARALHO import Poder
 
 class Main:
     def __init__(self):
+        aux_poder_baralho = []
         pontos_totais1 = 0
         pontos_totais2 = 0
         pontos = 1
@@ -21,10 +22,11 @@ class Main:
             nipes = ["moles", "espadas", "copas", "paus"]
 
             aux_baralho_total = []
+            self.aux_poder_baralho = []
 
             for j in range(0, 10):
                 for i in range(0, 4):
-                    aux_baralho_total.append(cartas[j])
+                    aux_baralho_total.append(cartas[j])     #inserir
                     aux_baralho_total.append(nipes[i])
 
             for q in range(3):
@@ -87,17 +89,16 @@ class Main:
                     else:
                         coringa_aux = randint(0, 78)
 
+                aux_poder_baralho = Poder(coringa, aux_baralho_total)   #instanciação
+                aux_poder_baralho.mostrar()
 
                 print("mao1:", mao1)
                 print("mao2:", mao2)
                 print("coringa", coringa)
 
-                aux_poder_baralho = Poder.pod(self, coringa, aux_baralho_total)
-
                 totaux = False
                 while totaux is False:
                     for u in range(3):
-                        print(u)
                         aux_truco = []
                         aux_truco6 = []
                         aux_truco9 = []
@@ -112,7 +113,9 @@ class Main:
                         truco9 = False
                         truco12 = False
                         ################################################################################    CARTA JOGADA PELA MAO 1
-                        print(mao1)
+                        pergunta1 = input("deseja ver sua mão?").upper().strip()    #consultar
+                        if pergunta1[0] == "S":
+                            print(mao1)
                         if truco3 is False:
                             truco1 = input("pedir truco?").upper().strip()
                             if truco1[0] == "S":
@@ -203,19 +206,22 @@ class Main:
 
                         for i in range(0, len(mao1), 2):
                             if mao1_PLAY_num == mao1[i] and mao1_PLAY_nipe == mao1[i + 1]:
-                                mao1.pop(i + 1)
+                                mao1.pop(i + 1)           #excluir
                                 mao1.pop(i)
                                 break
                             else:
                                 print('')
 
                         #############################################################################   CARTA JOGADA PELA MÃO 2
-                        print(mao2)
+                        pergunta2 = input("deseja ver sua mão?").upper().strip()    #consultar
+                        if pergunta2[0] == "S":
+                            print(mao2)
                         if truco3 is False:
                             truco1 = input("pedir truco?").upper().strip()
                             if truco1[0] == "S":
                                 truco3 = True
                             aux_truco2.append(Truco2.truc(self, truco1))
+                            aux_truco2[0][1].truc()
                             win_mao2 = aux_truco2[0][0]
                             pontos = aux_truco2[0][1]
                             if win_mao2 == 2:
